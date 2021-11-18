@@ -1,0 +1,16 @@
+package com.ftn.CAFOOD.model;
+
+public enum STATE {
+
+	CREATED,
+	BARMEN_LIC,
+	COOK_LIC1,
+	COOK_LIC2,
+	COOK_LIC3,
+	BARMEN_FINISH,
+	COOK_FINISH1,
+	COOK_FINISH2,
+	COOK_FINISH3,
+	CHARGED
+	
+}
