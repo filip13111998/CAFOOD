@@ -13,4 +13,8 @@ public interface MyUserRepository extends JpaRepository<MyUser,Long>{
 	@Query("SELECT u FROM MyUser u WHERE u.delete = 'true' AND u.role <> 'ADMIN'")
 	Page<MyUser> findAll(Pageable pageable);
 	
+	@Transactional 
+	@Query("SELECT u FROM MyUser u WHERE u.username = ?1")
+	MyUser findOneByUsername(String username);
+	
 }

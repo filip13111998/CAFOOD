@@ -28,16 +28,27 @@ public class DrinkPrice implements Serializable{
 	@Column(name="price_date_of_created" , nullable = false , unique = false)
 	private Date dateOfCreated;
 	
-	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-	private Drink drink;
+	@Column(name="drink_active" , nullable = false , unique = false)
+	private Boolean active;
+	
+//	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+//	private Drink drink;
 	
 	public DrinkPrice() {}
 
-	public DrinkPrice(Long drinkPrice, Date dateOfCreated, Drink drink) {
+	public DrinkPrice(Long drinkPrice, Date dateOfCreated,Boolean act) {
 		super();
 		this.drinkPrice = drinkPrice;
 		this.dateOfCreated = dateOfCreated;
-		this.drink = drink;
+		this.active = act;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public Long getId() {
@@ -64,18 +75,9 @@ public class DrinkPrice implements Serializable{
 		this.dateOfCreated = dateOfCreated;
 	}
 
-	public Drink getFood() {
-		return drink;
-	}
-
-	public void setFood(Drink food) {
-		this.drink = food;
-	}
-
 	@Override
 	public String toString() {
-		return "DrinkPrice [id=" + id + ", drinkPrice=" + drinkPrice + ", dateOfCreated=" + dateOfCreated + ", food="
-				+ drink + "]";
+		return "DrinkPrice [id=" + id + ", drinkPrice=" + drinkPrice + ", dateOfCreated=" + dateOfCreated + "]";
 	}
 	
 	

@@ -3,19 +3,21 @@ package com.ftn.CAFOOD.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "food_price")
 public class FoodPrice implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -28,16 +30,20 @@ public class FoodPrice implements Serializable{
 	@Column(name="price_date_of_created" , nullable = false , unique = false)
 	private Date dateOfCreated;
 	
-	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-	private Food food;
+//	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+//	private Food food;
+	
+	@Column(name="active" , nullable = false , unique = false)
+	private boolean active;
 
 	public FoodPrice() {}
 	
-	public FoodPrice(Long foodPrice, Date dateOfCreated, Food food) {
+	public FoodPrice(Long foodPrice, Date dateOfCreated , boolean active) {
 		super();
 		this.foodPrice = foodPrice;
 		this.dateOfCreated = dateOfCreated;
-		this.food = food;
+		this.active = active;
+		
 	}
 
 	public Long getId() {
@@ -64,18 +70,18 @@ public class FoodPrice implements Serializable{
 		this.dateOfCreated = dateOfCreated;
 	}
 
-	public Food getFood() {
-		return food;
+
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setFood(Food food) {
-		this.food = food;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override
 	public String toString() {
-		return "FoodPrice [id=" + id + ", foodPrice=" + foodPrice + ", dateOfCreated=" + dateOfCreated + ", food="
-				+ food + "]";
+		return "FoodPrice [id=" + id + ", foodPrice=" + foodPrice + ", dateOfCreated=" + dateOfCreated + "]";
 	}
 	
 	

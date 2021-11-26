@@ -39,6 +39,12 @@ public class SalaryService {
 		return sal;
 	}
 
+//	public void deletePreviousSalary() {
+//		Salary s = sr.findOneByActive();
+//		s.setActive(false);
+//		sr.save(s);
+//	}
+
 
 	
 }

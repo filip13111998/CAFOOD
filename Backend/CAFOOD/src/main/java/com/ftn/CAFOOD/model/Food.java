@@ -23,8 +23,13 @@ import javax.persistence.Table;
 import com.ftn.CAFOOD.converter.StringListConverter;
 
 @Entity
-@Table(name = "food")
+@Table(name = "Food")
 public class Food implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -42,24 +47,24 @@ public class Food implements Serializable{
 	@Convert(converter = StringListConverter.class)
 	private ArrayList<String> foodAllergens;
 	
-	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	@JoinColumn(name="image_id")
     private Image foodImage; // image of the food.
 	
 	@Column(name="food_of_preparation" , nullable = false , unique = false)
 	private Date timeOfPreparation;
 	
-	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
-	@JoinColumn(name="food_price_id")
-    private FoodPrice price;
-	
+//	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+//	@JoinColumn(name="food_price_id")
+//    private FoodPrice price;
+//	
 	@Column(name="food_delete" , nullable = false , unique = false)
 	private boolean delete;
 	
 	@Column(name="food_in_menu" , nullable = false , unique = false)
 	private boolean inMenu;
 	
-	@OneToMany(mappedBy =  "id", cascade =  CascadeType.ALL , fetch = FetchType.LAZY)
+	@OneToMany(cascade =  CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<FoodPrice> pricesHistory = new ArrayList<FoodPrice>();
 
 	@Enumerated(EnumType.ORDINAL)
@@ -73,7 +78,7 @@ public class Food implements Serializable{
 	
 
 	public Food(String name, String description, ArrayList<String> foodAllergens, Image foodImage,
-			Date timeOfPreparation, FoodPrice price, boolean delete, boolean inMenu, ArrayList<FoodPrice> pricesHistory,
+			Date timeOfPreparation, boolean delete, boolean inMenu,
 			FOOD_TYPE food_type) {
 		super();
 		this.name = name;
@@ -81,11 +86,18 @@ public class Food implements Serializable{
 		this.foodAllergens = foodAllergens;
 		this.foodImage = foodImage;
 		this.timeOfPreparation = timeOfPreparation;
-		this.price = price;
+		
 		this.delete = delete;
 		this.inMenu = inMenu;
-		this.pricesHistory = pricesHistory;
+//		this.pricesHistory = pricesHistory;
 		this.food_type = food_type;
+	}
+
+
+
+
+	public void setPricesHistory(List<FoodPrice> pricesHistory) {
+		this.pricesHistory = pricesHistory;
 	}
 
 
@@ -153,14 +165,6 @@ public class Food implements Serializable{
 		this.timeOfPreparation = timeOfPreparation;
 	}
 
-	public FoodPrice getPrice() {
-		return price;
-	}
-
-	public void setPrice(FoodPrice price) {
-		this.price = price;
-	}
-
 	public boolean isDelete() {
 		return delete;
 	}
@@ -191,8 +195,7 @@ public class Food implements Serializable{
 	@Override
 	public String toString() {
 		return "Food [id=" + id + ", name=" + name + ", description=" + description + ", foodAllergens=" + foodAllergens
-				+ ", foodImage=" + foodImage + ", timeOfPreparation=" + timeOfPreparation + ", price=" + price
-				+ ", delete=" + delete + ", inMenu=" + inMenu + ", pricesHistory=" + pricesHistory + ", food_type="
+				+ ", foodImage=" + foodImage + ", timeOfPreparation=" + timeOfPreparation + ", price=" + ", delete=" + delete + ", inMenu=" + inMenu + ", pricesHistory=" + pricesHistory + ", food_type="
 				+ food_type + "]";
 	}
 

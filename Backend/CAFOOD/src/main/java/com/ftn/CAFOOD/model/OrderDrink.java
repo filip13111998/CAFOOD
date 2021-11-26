@@ -30,52 +30,19 @@ public class OrderDrink implements Serializable{
 	@JoinColumn(name="drink_id")
 	private Drink drink;
 
-	@ManyToOne(fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
-	private Order order;
+//	@ManyToOne(fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
+//	private Order order;
 	
 	public OrderDrink(){
 		
 	}
 	
-	
-	 
-	
-
-
-
-	public OrderDrink(int count, Drink drink, Order order) {
+	public OrderDrink(int count, Drink drink) {
 		super();
 		this.count = count;
 		this.drink = drink;
-		this.order = order;
+//		this.order = order;
 	}
-
-
-
-
-
-
-
-	public Order getOrder() {
-		return order;
-	}
-
-
-
-
-
-
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-
-
-
-
-
-
 	public Long getId() {
 		return id;
 	}
@@ -101,14 +68,9 @@ public class OrderDrink implements Serializable{
 	}
 
 
-
-
-
-
-
 	@Override
 	public String toString() {
-		return "OrderDrink [id=" + id + ", count=" + count + ", drink=" + drink + ", order=" + order + "]";
+		return "OrderDrink [id=" + id + ", count=" + count + ", drink=" + drink +  "]";
 	}
 
 	

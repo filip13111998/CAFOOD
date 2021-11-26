@@ -37,7 +37,7 @@ public class MyUser implements Serializable{
 	@Column(name="lastName" , nullable = false , unique = false)
 	private String lastName;
 	
-	@Column(name="delete" , nullable = false , unique = false)
+	@Column(name="delete_user" , nullable = false , unique = false)
 	private boolean delete;
 	 
 	@Column(name="user_role" , nullable = false , unique = false)
@@ -67,7 +67,6 @@ public class MyUser implements Serializable{
 		this.delete = delete;
 		this.role = role;
 		this.user_image = user_image;
-		this.salary = salary;
 	}
 
 

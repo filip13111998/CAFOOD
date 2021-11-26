@@ -58,10 +58,10 @@ public class Order implements Serializable{
 	@Enumerated(EnumType.ORDINAL)
     public STATE state;
    
-	@OneToMany(mappedBy =  "id", cascade =  CascadeType.ALL , fetch = FetchType.LAZY)
+	@OneToMany(cascade =  CascadeType.ALL , fetch = FetchType.LAZY)
     public List<OrderFood> orderFood =  new ArrayList<OrderFood>();
    
-	@OneToMany(mappedBy =  "id", cascade =  CascadeType.ALL , fetch = FetchType.LAZY)
+	@OneToMany(cascade =  CascadeType.ALL , fetch = FetchType.LAZY)
     public List<OrderDrink> orderDrink = new ArrayList<OrderDrink>();
     
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
